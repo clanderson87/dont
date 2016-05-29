@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+
+  "name": "Don't...",
+  "description": "Need to cut spending? This'll do the trick. ",
+  "version": "0.1",
+
+  "browser_action": {
+   "default_icon": "icon.png"
+  },
+  
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  },
+  
+  "permissions": [
+   "activeTab"
+   ],
+   "content_scripts": [
+    {
+      "matches": [
+        "https://www.amazon.com/*",
+        "http://www.amazon.com/*",
+        "http://smile.amazon.com/*",
+        "https://smile.amazon.com/*",
+        "https://*.ebay.com/*",
+        "http://*.ebay.com/*",
+        "https://*.etsy.com/*",
+        "http://*.etsy.com/*"
+      ],
+      "js": [
+        "buttonKiller.js"
+      ]
+    }
+  ]
+}
