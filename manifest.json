@@ -7,11 +7,12 @@
 
   "browser_action": {
    "default_icon": "icon.png"
+   //add the backround.html with an activation button
   },
   
   "background": {
     "page": "background.html",
-    "persistent": true
+    "persistent": false
   },
   
   "permissions": [
@@ -20,10 +21,8 @@
    "content_scripts": [
     {
       "matches": [
-        "https://www.amazon.com/*",
-        "http://www.amazon.com/*",
-        "http://smile.amazon.com/*",
-        "https://smile.amazon.com/*",
+        "https://*.amazon.com/*",
+        "http://*.amazon.com/*",
         "https://*.ebay.com/*",
         "http://*.ebay.com/*",
         "https://*.etsy.com/*",
