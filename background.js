@@ -30,7 +30,7 @@ var go = function() {
         elm.disabled = true;
       }
       
-      //this works on secondary purchase links ('Compare to similar items', 'Other sellers on Amazon')
+      //This works on secondary purchase links ('Compare to similar items', 'Other sellers on Amazon')
       var links = document.getElementsByTagName('a');
       for (var i = 0; i < links.length; i++) {
         var elm = links[i];
@@ -48,47 +48,28 @@ var go = function() {
   
   if(url.indexOf('ebay.com') > -1) {
     
-    //this needs work
-    
-    //Event listener isn't firing: 
-    /*var thing = document.getElementsByClassName('actPanel')[0];
-    console.log(thing);
-    thing.addEventListener('onmouseover', function() {
-      console.log("eventListener is firing");
-      thing.display = "none";
-    })*/
-    
-    
-    for (var i = 0; i < ebayIds.length; i++) {
-      var parentBuyItNow = document.getElementsByClassName('u-flL');
-        console.log("parentBuyItNow is: ", parentBuyItNow);
-        parentBuyItNow.className = "dont";
-        
-        var parentAddToCart = document.getElementsByClassName('u-cb');
-        console.log("parentAddToCart is: ", parentAddToCart);
-        parentAddToCart[12].children[2].className = "dont";
-        
-      try{
-        var thing = document.getElementById(ebayIds[i]);
-        //console.log(thing);
-        thing.href = "javascript:;";
-        thing.id = "dont";
-        thing.onclick = "return false";
-        thing.style.disabled = "disabled";
-        thing.innerText = "Don't";
-        thing.className = "dont";
-        thing.disabled = "disabled";
-        thing.onmouseover = function(){
-          console.log("evL is firing");
-          //this is firing
-          thing.remove();
+    //This disables the button/links in the main action panel
+    var parentActionPanel = document.getElementsByClassName('actPanel')[0];
+        parentActionPanel.className = "dont";
+        for (var i = 0; i < parentActionPanel.children.length; i++) {
+          var childNode = parentActionPanel.children[i];
+          var gcNodes = childNode.children;
+          for (var j = 0; j < gcNodes.length; j++) {
+            var gcNode = gcNodes[j];
+            gcNode.remove();
+          }
         }
-      }catch (e){
-        console.log(e);
-        continue;
-      }
-    }
-  }
+        
+        var para = document.createElement("h2");
+        var node = document.createTextNode("Don't.");
+        para.appendChild(node);
+        parentActionPanel.appendChild(para);
+     //This disables the inputs in the 'Add to cart and Save!' box.   
+     var input = document.getElementById('but_addToCartId');
+     input.value = "Don't";
+     input.title = "Don't";
+     input.disabled = true;
+   }
   
 //Etsy code:
   
@@ -96,20 +77,18 @@ var go = function() {
     for (var i = 0; i < etsyClasses.length; i++) {
       try{
         console.log("etsyClasses is: ", typeof(etsyClasses[i]), etsyClasses[i]);
-        var thing = document.getElementsByClassName(etsyClasses[i]);
+        var thing = document.getElementsByClassName(etsyClasses[i])[0];
         console.log(thing);
-        thing[0].disabled = true;
-        thing[0].style.disabled = true;
-        thing[0].childNodes[0].data = "Don't";
+        thing.disabled = true;
+        thing.style.disabled = true;
+        thing.childNodes[0].data = "Don't";
       }catch (e){
         console.log(e);
         continue;
       }
     }
-  }
-  
+  }  
   console.log("Just don't.")
-
   };
   
    setTimeout(go, 1000);
