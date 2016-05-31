@@ -10,8 +10,24 @@ var go = function() {
   console.log("url is: ", url)
   
   if (url.indexOf('amazon.com') > -1) {
+    
+    //This works on the buy box
     var btns = document.getElementsByClassName('a-button-input');
-    console.log(btn)
+    console.log(btns);
+    for (var i = 0; i < btns.length; i++) {
+      var element = btns[i];
+      element.disabled = true;
+    }
+    
+    /*
+    var linkParents = document.getElementsByClassName('a-button-inner');
+    console.log(linkParents);
+        
+    var linkChildren = document.getElementsByClassName('a-button-text');
+    console.log("linkChildren is: ", linkChildren);
+    */
+    
+    
     /*for (var i = 0; i < amzIds.length; i++) {
       if (i = 3) {
         try {
