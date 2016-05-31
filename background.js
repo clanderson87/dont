@@ -13,10 +13,21 @@ var go = function() {
     
     //This works on the buy box
     var btns = document.getElementsByClassName('a-button-input');
-    console.log(btns);
+    //console.log(btns);
     for (var i = 0; i < btns.length; i++) {
       var element = btns[i];
       element.disabled = true;
+    }
+    
+    var links = document.getElementsByTagName('a');
+    //console.log(links);
+    for (var i = 0; i < links.length; i++) {
+      var elm = links[i];
+      console.log('looking for links...');
+      if(elm.id.indexOf('a-autoid') > -1){
+        console.log('a-autoid link found!', elm)
+        elm.href = "javascript:;";
+      }
     }
     
     /*
