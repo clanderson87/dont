@@ -1,8 +1,6 @@
 var go = function() {
   
   /*TODO:
-  
-  1) fix eBay or give up. 2hrs tops to give to this.
   2) styling. 'Don't' needs a color scheme.
   3) maybe a don't toast notification onclick of disabled button.
   4) good button icon
@@ -64,6 +62,9 @@ var go = function() {
         var node = document.createTextNode("Don't.");
         para.appendChild(node);
         parentActionPanel.appendChild(para);
+        var cssString = "font-weight: 900; font-size: xx-large; text-align: right; margin-right: 20%";
+        para.style.cssText = cssString;
+        
      //This disables the inputs in the 'Add to cart and Save!' box.   
      var input = document.getElementById('but_addToCartId');
      input.value = "Don't";
@@ -87,9 +88,10 @@ var go = function() {
         continue;
       }
     }
-  }  
+  }
+  
   console.log("Just don't.")
   };
   
-   setTimeout(go, 1000);
+   setTimeout(go, 500);
   
