@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name": "Don't...",
+  "description": "Live frugally. Just don't.",
+  "version": "0.1",
+
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+  
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  
+  "permissions": [
+   "activeTab"
+   ],
+   "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.ebay.com/*",
+        "*://*.etsy.com/*"
+        //add more shopping sites here
+      ],
+      "js": [
+        "background.js"
+      ]
+    }
+  ]
+}
