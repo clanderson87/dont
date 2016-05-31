@@ -6,16 +6,7 @@ var go = function() {
   4) good button icon
   5) randomized array of messages similar to "Don't"
   */
-  
-  
-  console.log("background.js is live!")
-  
-  var amzIds = [];//add any Amazon purchase-like button element names to this array
-  var ebayIds = ['binBtn_btn', 'isCartBtn_btn', 'shGetRates', 'cfmBtn_btn', 'but_addToCartId']; //add any eBay purchase-like button ID names to this array.
-  var etsyClasses = ['btn-transaction'] //add any Etsy purchase-like button class names to this array.
   var url = window.location.href;
-  
-  console.log("url is: ", url)
   
 //Amazon code
   
@@ -75,11 +66,10 @@ var go = function() {
 //Etsy code:
   
   if(url.indexOf('etsy.com') > -1) {
+    var etsyClasses = ['btn-transaction'] //add any Etsy purchase-like button class names to this array.
     for (var i = 0; i < etsyClasses.length; i++) {
       try{
-        console.log("etsyClasses is: ", typeof(etsyClasses[i]), etsyClasses[i]);
         var thing = document.getElementsByClassName(etsyClasses[i])[0];
-        console.log(thing);
         thing.disabled = true;
         thing.style.disabled = true;
         thing.childNodes[0].data = "Don't";
