@@ -7,7 +7,10 @@ var go = function() {
   5) randomized array of messages similar to "Don't"
   */
   var url = window.location.href;
-  
+  var dontStrings = ["Don't", "Nope", "Sorry", "Nuh-uh", "Can't", "You don't need it", "Yeah... no", "Too bad", "STAHP", "Tough", "Buzz off", "We don't want your money", "Bye, Felicia", "NO!", "Get bent"]
+  var rN = function() {
+    return Math.ceil(Math.random() * (dontStrings.length - 1));
+  }
 //Amazon code
   
   if (url.indexOf('amazon.com') > -1) {
@@ -24,8 +27,9 @@ var go = function() {
       for (var i = 0; i < links.length; i++) {
         var elm = links[i];
         if(elm.id.indexOf('a-autoid') > -1 || elm.id.indexOf('comparison_add') > -1){
+          
           elm.href = "javascript:;";
-          elm.innerHTML = "Don't";
+          elm.innerHTML = dontStrings[rN()];
         }
       }
     } catch(e){
@@ -36,7 +40,7 @@ var go = function() {
 //eBay code:
   
   if(url.indexOf('ebay.com') > -1) {
-    
+    try{
     //This disables the button/links in the main action panel
     var parentActionPanel = document.getElementsByClassName('actPanel')[0];
         parentActionPanel.className = "dont";
@@ -50,7 +54,7 @@ var go = function() {
         }
         
         var para = document.createElement("h2");
-        var node = document.createTextNode("Don't.");
+        var node = document.createTextNode(dontStrings[rN()]);
         para.appendChild(node);
         parentActionPanel.appendChild(para);
         var cssString = "font-weight: 900; font-size: xx-large; text-align: right; margin-right: 20%";
@@ -58,9 +62,12 @@ var go = function() {
         
      //This disables the inputs in the 'Add to cart and Save!' box.   
      var input = document.getElementById('but_addToCartId');
-     input.value = "Don't";
-     input.title = "Don't";
+     input.value = dontStrings[rN()];
+     input.title = dontStrings[rN()];
      input.disabled = true;
+    } catch (e){
+      console.log(e);
+    }
    }
   
 //Etsy code:
@@ -72,7 +79,7 @@ var go = function() {
         var thing = document.getElementsByClassName(etsyClasses[i])[0];
         thing.disabled = true;
         thing.style.disabled = true;
-        thing.childNodes[0].data = "Don't";
+        thing.childNodes[0].data = dontStrings[rN()];
       }catch (e){
         console.log(e);
         continue;
