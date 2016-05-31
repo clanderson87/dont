@@ -30,8 +30,26 @@ var go = function() {
   
   if(url.indexOf('ebay.com') > -1) {
     for (var i = 0; i < ebayIds.length; i++) {
+      var parentBuyItNow = document.getElementsByClassName('u-flL');
+        console.log("parentBuyItNow is: ", parentBuyItNow);
+        parentBuyItNow.className = "dont";
+        
+        var parentAddToCart = document.getElementsByClassName('u-cb');
+        console.log("parentAddToCart is: ", parentAddToCart);
+        parentAddToCart[12].children[2].className = "dont";
+        
+        
+        //look at parentAddToCart[12].children[2].
       try{
-        document.getElementById(ebayIds[i]).disabled = true;
+        var thing = document.getElementById(ebayIds[i]);
+        //console.log(thing);
+        thing.href = "javascript:;";
+        thing.id = "dont";
+        thing.onclick = "return false";
+        thing.style.disabled = "disabled";
+        thing.innerText = "Don't";
+        thing.className = "dont";
+        thing.disabled = "disabled";
       }catch (e){
         console.log(e);
         continue;
@@ -47,6 +65,7 @@ var go = function() {
         console.log(thing);
         thing[0].disabled = true;
         thing[0].style.disabled = true;
+        thing[0].childNodes[0].data = "Don't";
       }catch (e){
         console.log(e);
         continue;
