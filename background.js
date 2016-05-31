@@ -1,5 +1,15 @@
 var go = function() {
   
+  /*TODO:
+  
+  1) fix eBay or give up. 2hrs tops to give to this.
+  2) styling. 'Don't' needs a color scheme.
+  3) maybe a don't toast notification onclick of disabled button.
+  4) good button icon
+  5) randomized array of messages similar to "Don't"
+  */
+  
+  
   console.log("background.js is live!")
   
   var amzIds = [];//add any Amazon purchase-like button element names to this array
