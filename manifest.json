@@ -2,16 +2,16 @@
   "manifest_version": 2,
 
   "name": "Don't...",
-  "description": "Need to cut spending? This'll do the trick. ",
+  "description": "Live frugally. Just don't.",
   "version": "0.1",
 
   "browser_action": {
-   "default_icon": "icon.png"
-   //add the backround.html with an activation button
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
   },
   
   "background": {
-    "page": "background.html",
+    "scripts": ["background.js"],
     "persistent": false
   },
   
@@ -21,15 +21,13 @@
    "content_scripts": [
     {
       "matches": [
-        "https://*.amazon.com/*",
-        "http://*.amazon.com/*",
-        "https://*.ebay.com/*",
-        "http://*.ebay.com/*",
-        "https://*.etsy.com/*",
-        "http://*.etsy.com/*"
+        "*://*.amazon.com/*",
+        "*://*.ebay.com/*",
+        "*://*.etsy.com/*"
+        //add more shopping sites here
       ],
       "js": [
-        "buttonKiller.js"
+        "background.js"
       ]
     }
   ]
