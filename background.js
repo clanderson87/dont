@@ -3,19 +3,21 @@ var go = function() {
   console.log("background.js is live!!")
   
   var amzIds = ['add-to-cart-button', 'oneClickBuyButton', 'submit.rcx-subscribe'];//add any Amazon purchase-like button element names to this array
-  var ebayIds = ['binBtn_btn', 'isCartBtn_btn', 'shGetRates']; //add any eBay purchase-like button ID names to this array.
+  var ebayIds = ['binBtn_btn', 'isCartBtn_btn', 'shGetRates', 'cfmBtn_btn', 'but_addToCartId']; //add any eBay purchase-like button ID names to this array.
   var etsyClasses = ['btn-transaction'] //add any Etsy purchase-like button class names to this array.
   var url = window.location.href;
   
   console.log("url is: ", url)
   
   if (url.indexOf('amazon.com') > -1) {
-    for (var i = 0; i < amzIds.length; i++) {
+    var btns = document.getElementsByClassName('a-button-input');
+    console.log(btn)
+    /*for (var i = 0; i < amzIds.length; i++) {
       if (i = 3) {
         try {
           document.getElementsByName(amzIds[i]).style.disabled = true;
         } catch (error) {
-          console.log(e);
+          console.log(error);
           continue;
         }
       }
@@ -25,10 +27,24 @@ var go = function() {
         console.log(e);
         continue;
       }
-    }
+    }*/
   }
+ 
+//eBay code:
   
   if(url.indexOf('ebay.com') > -1) {
+    
+    
+    
+    //Event listener isn't firing: 
+    /*var thing = document.getElementsByClassName('actPanel')[0];
+    console.log(thing);
+    thing.addEventListener('onmouseover', function() {
+      console.log("eventListener is firing");
+      thing.display = "none";
+    })*/
+    
+    
     for (var i = 0; i < ebayIds.length; i++) {
       var parentBuyItNow = document.getElementsByClassName('u-flL');
         console.log("parentBuyItNow is: ", parentBuyItNow);
@@ -38,8 +54,6 @@ var go = function() {
         console.log("parentAddToCart is: ", parentAddToCart);
         parentAddToCart[12].children[2].className = "dont";
         
-        
-        //look at parentAddToCart[12].children[2].
       try{
         var thing = document.getElementById(ebayIds[i]);
         //console.log(thing);
@@ -50,12 +64,19 @@ var go = function() {
         thing.innerText = "Don't";
         thing.className = "dont";
         thing.disabled = "disabled";
+        thing.onmouseover = function(){
+          console.log("evL is firing");
+          //this is firing
+          thing.remove();
+        }
       }catch (e){
         console.log(e);
         continue;
       }
     }
   }
+  
+//Etsy code:
   
   if(url.indexOf('etsy.com') > -1) {
     for (var i = 0; i < etsyClasses.length; i++) {
