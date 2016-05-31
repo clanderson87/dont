@@ -1,69 +1,44 @@
 var go = function() {
   
-  console.log("background.js is live!!")
+  console.log("background.js is live!")
   
-  var amzIds = ['add-to-cart-button', 'oneClickBuyButton', 'submit.rcx-subscribe'];//add any Amazon purchase-like button element names to this array
+  var amzIds = [];//add any Amazon purchase-like button element names to this array
   var ebayIds = ['binBtn_btn', 'isCartBtn_btn', 'shGetRates', 'cfmBtn_btn', 'but_addToCartId']; //add any eBay purchase-like button ID names to this array.
   var etsyClasses = ['btn-transaction'] //add any Etsy purchase-like button class names to this array.
   var url = window.location.href;
   
   console.log("url is: ", url)
   
+//Amazon code
+  
   if (url.indexOf('amazon.com') > -1) {
-    
-    //This works on the buy box
-    var btns = document.getElementsByClassName('a-button-input');
-    //console.log(btns);
-    for (var i = 0; i < btns.length; i++) {
-      var elm = btns[i];
-      elm.disabled = true;
-      elm.value = "Don't"
-    }
-    
-    var links = document.getElementsByTagName('a');
-    //console.log(links);
-    for (var i = 0; i < links.length; i++) {
-      var elm = links[i];
-      //console.log('looking for links...');
-      if(elm.id.indexOf('a-autoid') > -1 || elm.id.indexOf('comparison_add') > -1){
-        //console.log('a-autoid link found!', elm)
-        elm.href = "javascript:;";
-        elm.innerHTML = "Don't";
+    try {
+      //This works on the main buy box
+      var btns = document.getElementsByClassName('a-button-input');
+      for (var i = 0; i < btns.length; i++) {
+        var elm = btns[i];
+        elm.disabled = true;
       }
-    }
-    
-    /*
-    var linkParents = document.getElementsByClassName('a-button-inner');
-    console.log(linkParents);
-        
-    var linkChildren = document.getElementsByClassName('a-button-text');
-    console.log("linkChildren is: ", linkChildren);
-    */
-    
-    
-    /*for (var i = 0; i < amzIds.length; i++) {
-      if (i = 3) {
-        try {
-          document.getElementsByName(amzIds[i]).style.disabled = true;
-        } catch (error) {
-          console.log(error);
-          continue;
+      
+      //this works on secondary purchase links ('Compare to similar items', 'Other sellers on Amazon')
+      var links = document.getElementsByTagName('a');
+      for (var i = 0; i < links.length; i++) {
+        var elm = links[i];
+        if(elm.id.indexOf('a-autoid') > -1 || elm.id.indexOf('comparison_add') > -1){
+          elm.href = "javascript:;";
+          elm.innerHTML = "Don't";
         }
       }
-      try{
-        document.getElementById(amzIds[i]).style.disabled = true;
-      }catch (e){
-        console.log(e);
-        continue;
-      }
-    }*/
+    } catch(e){
+      console.log(e.message);
+    }
   }
  
 //eBay code:
   
   if(url.indexOf('ebay.com') > -1) {
     
-    
+    //this needs work
     
     //Event listener isn't firing: 
     /*var thing = document.getElementsByClassName('actPanel')[0];
@@ -127,5 +102,5 @@ var go = function() {
 
   };
   
-   setTimeout(go, 3500);
+   setTimeout(go, 1000);
   
