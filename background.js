@@ -15,18 +15,20 @@ var go = function() {
     var btns = document.getElementsByClassName('a-button-input');
     //console.log(btns);
     for (var i = 0; i < btns.length; i++) {
-      var element = btns[i];
-      element.disabled = true;
+      var elm = btns[i];
+      elm.disabled = true;
+      elm.value = "Don't"
     }
     
     var links = document.getElementsByTagName('a');
     //console.log(links);
     for (var i = 0; i < links.length; i++) {
       var elm = links[i];
-      console.log('looking for links...');
-      if(elm.id.indexOf('a-autoid') > -1){
-        console.log('a-autoid link found!', elm)
+      //console.log('looking for links...');
+      if(elm.id.indexOf('a-autoid') > -1 || elm.id.indexOf('comparison_add') > -1){
+        //console.log('a-autoid link found!', elm)
         elm.href = "javascript:;";
+        elm.innerHTML = "Don't";
       }
     }
     
