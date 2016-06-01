@@ -3,8 +3,6 @@ var go = function() {
   /*TODO:
   2) styling. 'Don't' needs a color scheme.
   3) maybe a don't toast notification onclick of disabled button.
-  4) good button icon
-  5) randomized array of messages similar to "Don't"
   */
   var url = window.location.href;
   var dontStrings = ["Don't", "Nope", "Sorry", "Nuh-uh", "Can't", "You don't need it", "Yeah... no", "Too bad", "STAHP", "Tough", "Buzz off", "We don't want your money", "Bye, Felicia", "NO!", "Get bent"]
@@ -16,10 +14,9 @@ var go = function() {
   
   if (url.indexOf('amazon.com') > -1) {
     try {
-      //This works on the main buy box
+      //This kills the buttons in the main buy box
       var ul = document.getElementsByClassName('a-nostyle a-button-list')[0];
       ul.remove();
-      
       var btns = document.getElementsByClassName('a-button-input');
       for (var i = 0; i < btns.length; i++) {
         var elm = btns[i];
@@ -27,8 +24,10 @@ var go = function() {
         elm.disabled = true;
       }
       
+      //this kills the weird span in the 'Review Subscription' button
       document.getElementById('rcx-subscribe-submit-button-announce').childNodes[1].childNodes[0].data = "";
       
+      //this kills the buttons that actually aren't buttons, but links.
       var links = document.getElementsByTagName('a');
       for (var i = 0; i < links.length; i++) {
         var elm = links[i];
@@ -95,5 +94,5 @@ var go = function() {
   console.log("Just don't.")
   };
   
-   setTimeout(go, 500);
+setTimeout(go, 500);
   
