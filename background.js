@@ -14,9 +14,12 @@ var go = function() {
   
   if (url.indexOf('amazon.com') > -1) {
     try {
-      //This kills the buttons in the main buy box
+      
+      //this kills the annoying image hover pics
       var ul = document.getElementsByClassName('a-nostyle a-button-list')[0];
       ul.remove();
+      
+      //This kills the buttons in the main buy box
       var btns = document.getElementsByClassName('a-button-input');
       for (var i = 0; i < btns.length; i++) {
         var elm = btns[i];
@@ -40,7 +43,7 @@ var go = function() {
       console.log(e);
     }
   }
- 
+
 //eBay code:
   
   if(url.indexOf('ebay.com') > -1) {
@@ -57,6 +60,8 @@ var go = function() {
           }
         }
         
+        
+        //this creates the text where the buy buttons were.
         var para = document.createElement("h2");
         var node = document.createTextNode(dontStrings[rN()]);
         para.appendChild(node);
@@ -64,15 +69,15 @@ var go = function() {
         var cssString = "font-weight: 900; font-size: xx-large; text-align: right; margin-right: 20%";
         para.style.cssText = cssString;
         
-     //This disables the inputs in the 'Add to cart and Save!' box.   
-     var input = document.getElementById('but_addToCartId');
-     input.value = dontStrings[rN()];
-     input.title = dontStrings[rN()];
-     input.disabled = true;
+    //This disables the inputs in the 'Add to cart and Save!' box.   
+    var input = document.getElementById('but_addToCartId');
+    input.value = dontStrings[rN()];
+    input.title = dontStrings[rN()];
+    input.disabled = true;
     } catch (e){
       console.log(e);
     }
-   }
+  }
   
 //Etsy code:
   
@@ -95,4 +100,3 @@ var go = function() {
   };
   
 setTimeout(go, 500);
-  
