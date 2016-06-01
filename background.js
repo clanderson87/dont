@@ -11,29 +11,34 @@ var go = function() {
   var rN = function() {
     return Math.ceil(Math.random() * (dontStrings.length - 1));
   }
+  
 //Amazon code
   
   if (url.indexOf('amazon.com') > -1) {
     try {
       //This works on the main buy box
+      var ul = document.getElementsByClassName('a-nostyle a-button-list')[0];
+      ul.remove();
+      
       var btns = document.getElementsByClassName('a-button-input');
       for (var i = 0; i < btns.length; i++) {
         var elm = btns[i];
+        elm.nextSibling.childNodes[0].data = dontStrings[rN()];
         elm.disabled = true;
       }
       
-      //This works on secondary purchase links ('Compare to similar items', 'Other sellers on Amazon')
+      document.getElementById('rcx-subscribe-submit-button-announce').childNodes[1].childNodes[0].data = "";
+      
       var links = document.getElementsByTagName('a');
       for (var i = 0; i < links.length; i++) {
         var elm = links[i];
         if(elm.id.indexOf('a-autoid') > -1 || elm.id.indexOf('comparison_add') > -1){
-          
           elm.href = "javascript:;";
           elm.innerHTML = dontStrings[rN()];
         }
       }
     } catch(e){
-      console.log(e.message);
+      console.log(e);
     }
   }
  
