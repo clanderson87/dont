@@ -1,9 +1,5 @@
 var go = function() {
   
-  /*TODO:
-  2) styling. 'Don't' needs a color scheme.
-  3) maybe a don't toast notification onclick of disabled button.
-  */
   var url = window.location.href;
   var dontStrings = ["Don't", "Nope", "Sorry", "Nuh-uh", "Can't", "You don't need it", "Yeah... no", "Too bad", "STAHP", "Tough", "Buzz off", "We don't want your money", "Bye, Felicia", "NO!", "Get bent"]
   var rN = function() {
@@ -29,8 +25,8 @@ var go = function() {
       try{
         //this kills the weird span in the 'Review Subscription' button
         document.getElementById('rcx-subscribe-submit-button-announce').childNodes[1].childNodes[0].data = "";
-      } catch (SubscriptionError){
-        console.log(SubscriptionError)
+      } catch (e){
+        console.log("SubscriptionError is: ", e)
       }
       //this kills the buttons that actually aren't buttons, but links.
       var links = document.getElementsByTagName('a');
@@ -42,16 +38,17 @@ var go = function() {
         }
       }
     } catch(e){
-      console.log(e);
+      console.log("Amazon error is: ", e);
     }
   }
 
 //eBay code:
   
   if(url.indexOf('ebay.com') > -1) {
-    try{
-    //This disables the button/links in the main action panel
-    var parentActionPanel = document.getElementsByClassName('actPanel')[0];
+    /*try{*/
+      //This disables the button/links in the main action panel
+      try{
+        var parentActionPanel = document.getElementsByClassName('actPanel')[0];
         parentActionPanel.className = "dont";
         for (var i = 0; i < parentActionPanel.children.length; i++) {
           var childNode = parentActionPanel.children[i];
@@ -70,35 +67,70 @@ var go = function() {
         parentActionPanel.appendChild(para);
         var cssString = "font-weight: 900; font-size: xx-large; text-align: right; margin-right: 20%";
         para.style.cssText = cssString;
-        
-    //This disables the inputs in the 'Add to cart and Save!' box.   
-    var input = document.getElementById('but_addToCartId');
-    input.value = dontStrings[rN()];
-    input.title = dontStrings[rN()];
-    input.disabled = true;
-    } catch (e){
-      console.log(e);
-    }
+      }catch(e){
+        console.log("actionPanelError is: ", e)
+      }
+      
+      try{
+        var galleryContainer = document.getElementById('coll_gallery_container');
+        galleryContainer.remove();
+        var para = document.createElement("div");
+        var node = document.createTextNode(dontStrings[rN()]);
+        para.appendChild(node);
+        var cssString = "font-weight: 900; font-size: xx-large; text-align: center;";
+        setTimeout(function(){
+          var throbber = document.getElementById('throbber').appendChild(para);
+          para.style.cssText = cssString;
+        }, 500); 
+      }catch(e){
+        console.log("sumCartError is: ", e);
+      }
+      
+      try{
+        //This disables the inputs in the 'Add to cart and Save!' box.   
+        var input = document.getElementById('but_addToCartId');
+        input.value = dontStrings[rN()];
+        input.title = dontStrings[rN()];
+        input.disabled = true;
+      } catch (e){
+        console.log("but_addToCartId error is: ", e);
+      }
+    /*} catch (generalError){
+      console.log(generalError);
+    }*/
   }
   
 //Etsy code:
   
   if(url.indexOf('etsy.com') > -1) {
-    var etsyClasses = ['btn-transaction'] //add any Etsy purchase-like button class names to this array.
-    for (var i = 0; i < etsyClasses.length; i++) {
-      try{
-        var thing = document.getElementsByClassName(etsyClasses[i])[0];
-        thing.disabled = true;
-        thing.style.disabled = true;
-        thing.childNodes[0].data = dontStrings[rN()];
-      }catch (e){
-        console.log(e);
-        continue;
-      }
+    var etsyClasses = ['btn-transaction', 'btn-transaction small']   
+    var etsyKill = function(button){
+      button.disabled = true;
+      button.style.disabled = true;
     }
+
+    //this kills the primary button on an etsy page.
+    try {
+      var bigBuyButton = document.getElementsByClassName(etsyClasses[0])[0];
+      etsyKill(bigBuyButton);
+      bigBuyButton.childNodes[0].data = dontStrings[rN()];
+    } catch (e) {
+      console.log("bigBuyButton error is: ", e);
+    } 
+    
+    //this kills any smaller, secondary buttons on an etsy page.
+    try{
+      var littleButtons = document.getElementsByClassName(etsyClasses[1]);
+          for (var i = 0; i < littleButtons.length; i++) {
+            var lilBtn = littleButtons[i];
+            etsyKill(lilBtn);
+            lilBtn.value = dontStrings[rN()];
+          }
+     } catch(e) {
+         console.log("lilBtn error is: ", e);
+     }
   }
-  
   console.log("Just don't.")
-  };
+};
   
 setTimeout(go, 500);
