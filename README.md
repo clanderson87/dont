@@ -1,6 +1,6 @@
 # Don't
 
-![Live frugally. Just Don't.](https://github.com/clanderson87/icon.png)
+![Live frugally. Just Don't.](https://github.com/clanderson87/dont/blob/master/icon.png)
 
 Wanna drop $45 on [Amazon](https://smile.amazon.com) for a new usb drive? No you don't.
 
