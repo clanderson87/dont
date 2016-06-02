@@ -24,7 +24,6 @@
         "*://*.amazon.com/*",
         "*://*.ebay.com/*",
         "*://*.etsy.com/*"
-        //add more shopping sites here
       ],
       "js": [
         "background.js"
