@@ -26,10 +26,12 @@ var go = function() {
         elm.nextSibling.childNodes[0].data = dontStrings[rN()];
         elm.disabled = true;
       }
-      
-      //this kills the weird span in the 'Review Subscription' button
-      document.getElementById('rcx-subscribe-submit-button-announce').childNodes[1].childNodes[0].data = "";
-      
+      try{
+        //this kills the weird span in the 'Review Subscription' button
+        document.getElementById('rcx-subscribe-submit-button-announce').childNodes[1].childNodes[0].data = "";
+      } catch (SubscriptionError){
+        console.log(SubscriptionError)
+      }
       //this kills the buttons that actually aren't buttons, but links.
       var links = document.getElementsByTagName('a');
       for (var i = 0; i < links.length; i++) {
