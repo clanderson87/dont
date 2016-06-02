@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Don't...",
+  "name": "Don't",
   "description": "Live frugally. Just don't.",
-  "version": "0.1",
+  "version": "0.5",
 
   "browser_action": {
    "default_icon": "icon.png",
