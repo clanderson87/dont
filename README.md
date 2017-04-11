@@ -8,6 +8,6 @@ Wanna check out the latest foreign knock-offs on [eBay](https://www.ebay.com)? N
 
 Love that new organic, free-range phonecase from [Etsy](https://www.etsy.com)? No, you don't.
 
-Don't stops frivolous spending by disabling or removing buy buttons on major e-commerce sites. Install it via the Chrome Web Store. Enable or disable it via the `chrome://extensions` manager. *(just copy and paste that in Chrome's address bar)*
+Don't stops frivolous spending by disabling or removing buy buttons on major e-commerce sites. Enable or disable it via the `chrome://extensions` manager. *(just copy and paste that in Chrome's address bar)*
 
 Live frugally. Just don't.
